@@ -1,0 +1,445 @@
+/* ─────────────────────────────────────────────────────────────────────
+   Zayono Docs — custom theme
+   Layered on top of VitePress's default theme. Goals:
+   - Brand colours (Zayono blue + ink black) instead of VitePress green.
+   - Mintlify-inspired feel: rounded cards, hover micro-interactions,
+     monospaced inline code with subtle tint, tighter typography.
+   - Three implicit content columns at wide viewports (sidebar / main /
+     on-this-page) — VitePress provides the structure, we tune the
+     widths + breakpoints.
+   ───────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Brand — Zayono blue (matches the dashboard `--ze-brand` token). */
+  --vp-c-brand-1: #2563EB;
+  --vp-c-brand-2: #1D4ED8;
+  --vp-c-brand-3: #1E40AF;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.12);
+  --vp-c-brand-softer: rgba(37, 99, 235, 0.06);
+
+  /* Typography */
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  /* Slightly tighter content width — Stripe/Mintlify reads at ~720px,
+     not the VitePress default of 752px which feels loose. */
+  --vp-layout-max-width: 1440px;
+
+  /* Custom semantic tokens used by the components below. */
+  --zd-card-bg: var(--vp-c-bg-soft);
+  --zd-card-border: var(--vp-c-divider);
+  --zd-card-hover-border: var(--vp-c-brand-1);
+  --zd-card-shadow-hover: 0 4px 16px rgba(37, 99, 235, 0.08);
+  --zd-radius: 10px;
+  --zd-radius-sm: 6px;
+}
+
+.dark {
+  --vp-c-brand-1: #3B82F6;
+  --vp-c-brand-2: #60A5FA;
+  --vp-c-brand-3: #93C5FD;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.18);
+  --vp-c-brand-softer: rgba(59, 130, 246, 0.08);
+}
+
+/* ─── Typography polish ─────────────────────────────────────────── */
+
+.VPDoc h1.title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 2rem;
+}
+
+.VPDoc h2 {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.VPDoc h3 {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-top: 2rem;
+}
+
+.VPDoc p, .VPDoc li {
+  line-height: 1.7;
+}
+
+/* Inline code — subtle tinted pill, not the default monochrome box. */
+.VPDoc :not(pre) > code {
+  background: var(--vp-c-brand-softer);
+  color: var(--vp-c-brand-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.dark .VPDoc :not(pre) > code {
+  color: var(--vp-c-brand-3);
+}
+
+/* ─── Sidebar polish ────────────────────────────────────────────── */
+
+.VPSidebar .VPSidebarItem.level-1 > .item > .text {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vp-c-text-3);
+}
+
+.VPSidebar .VPSidebarItem .link {
+  font-size: 13.5px;
+  border-radius: var(--zd-radius-sm);
+  padding: 4px 8px;
+  margin-left: -8px;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.VPSidebar .VPSidebarItem .link:hover {
+  background: var(--vp-c-brand-softer);
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebar .VPSidebarItem .link.active {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+/* ─── Nav top polish ────────────────────────────────────────────── */
+
+.VPNav .VPNavBarTitle .title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuGroup:hover .text {
+  color: var(--vp-c-brand-1);
+}
+
+/* ─── Cards (custom <Cards> + <Card> components — see below) ────── */
+
+.zd-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 1.5rem 0;
+}
+
+.zd-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--zd-card-bg);
+  border: 1px solid var(--zd-card-border);
+  border-radius: var(--zd-radius);
+  text-decoration: none !important;
+  color: var(--vp-c-text-1);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.zd-card:hover {
+  border-color: var(--zd-card-hover-border);
+  box-shadow: var(--zd-card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.zd-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.zd-card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.005em;
+}
+
+.zd-card-desc {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.55;
+}
+
+.zd-card-badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.zd-card-badge.zd-badge-soon {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+.dark .zd-card-badge.zd-badge-soon {
+  color: #fbbf24;
+}
+
+.zd-card-badge.zd-badge-stable {
+  background: rgba(22, 163, 74, 0.14);
+  color: #15803d;
+}
+.dark .zd-card-badge.zd-badge-stable {
+  color: #4ade80;
+}
+
+/* ─── API endpoint block ────────────────────────────────────────── */
+
+.api-endpoint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 1.5rem 0 1rem;
+  padding: 12px 16px;
+  border-radius: var(--zd-radius-sm);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+}
+
+.api-method {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  min-width: 56px;
+  font-family: var(--vp-font-family-mono);
+}
+
+.api-method.get { background: #16a34a; }
+.api-method.post { background: #2563eb; }
+.api-method.put { background: #d97706; }
+.api-method.patch { background: #d97706; }
+.api-method.delete { background: #dc2626; }
+
+.api-path {
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+  word-break: break-all;
+}
+
+/* ─── Parameter table ────────────────────────────────────────────── */
+
+.param-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.88rem;
+}
+
+.param-table th {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--vp-c-divider);
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.param-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  vertical-align: top;
+}
+
+.param-table tr:last-child td {
+  border-bottom: none;
+}
+
+.param-name {
+  font-family: var(--vp-font-family-mono);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--vp-c-brand-1);
+}
+
+.param-name.nested { padding-left: 20px; }
+
+.param-type {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.78rem;
+  color: var(--vp-c-text-2);
+}
+
+.param-required {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.param-required.yes {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.param-required.no {
+  color: var(--vp-c-text-3);
+  background: var(--vp-c-bg-soft);
+}
+
+/* ─── Code blocks polish ────────────────────────────────────────── */
+
+.VPDoc div[class*='language-'] {
+  border-radius: var(--zd-radius);
+  border: 1px solid var(--vp-c-divider);
+  margin: 16px 0;
+}
+
+.VPDoc div[class*='language-'] pre {
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.vp-code-group .tabs {
+  background: var(--vp-c-bg-soft);
+  border-radius: var(--zd-radius) var(--zd-radius) 0 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-code-group .tabs label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 10px 16px;
+}
+
+.vp-code-group .tabs input:checked + label {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
+
+/* ─── Hero page tweaks (index.md) ────────────────────────────────── */
+
+.VPHero .name {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(180deg, var(--vp-c-text-1) 0%, var(--vp-c-text-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.VPHero .text {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+}
+
+.VPHero .tagline {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+  max-width: 580px;
+}
+
+.VPHero .VPImage {
+  max-height: 100px;
+}
+
+/* ─── Buttons (Hero CTAs + custom .zd-btn) ──────────────────────── */
+
+.VPButton.brand {
+  border-radius: var(--zd-radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 18px;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+}
+
+.VPButton.alt {
+  border-radius: var(--zd-radius-sm);
+  font-weight: 500;
+}
+
+/* ─── Custom badges for "soon" / "stable" inline in markdown ────── */
+
+.zd-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-left: 6px;
+  vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.zd-tag.soon { background: rgba(245, 158, 11, 0.14); color: #b45309; }
+.dark .zd-tag.soon { color: #fbbf24; }
+
+.zd-tag.stable { background: rgba(22, 163, 74, 0.14); color: #15803d; }
+.dark .zd-tag.stable { color: #4ade80; }
+
+.zd-tag.beta { background: rgba(168, 85, 247, 0.14); color: #7e22ce; }
+.dark .zd-tag.beta { color: #c084fc; }
+
+/* ─── Custom info/warning callouts ──────────────────────────────── */
+
+.custom-block.tip,
+.custom-block.info,
+.custom-block.warning,
+.custom-block.danger {
+  border-radius: var(--zd-radius);
+  padding: 14px 18px;
+}
+
+.custom-block.tip {
+  border-left-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-softer);
+}
+
+/* ─── Footer ────────────────────────────────────────────────────── */
+
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+  padding: 28px 24px;
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+}
+
+/* ─── Responsive tweaks ─────────────────────────────────────────── */
+
+@media (min-width: 1440px) {
+  .VPDoc .container {
+    max-width: 1380px;
+  }
+}
