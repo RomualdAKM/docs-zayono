@@ -83,7 +83,7 @@ If the WooCommerce currency matches no available operator, Zayono will show "No 
 3. At checkout, use:
    - **MTN BJ Sandbox**: `+22961000000`
    - **Orange CI Sandbox**: `+22507000000`
-   - Other test numbers: see [Test numbers](/en/paiements/testing)
+   - Other test numbers: see [Test numbers](/en/paiements/tests)
 
 Sandbox transactions are visible on [app.zayono.com → Transactions](https://app.zayono.com/payments/transactions) in sandbox mode.
 

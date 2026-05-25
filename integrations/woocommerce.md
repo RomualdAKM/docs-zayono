@@ -83,7 +83,7 @@ Si la devise WooCommerce ne match aucun opérateur disponible, Zayono affichera 
 3. Au checkout, utilisez :
    - **MTN BJ Sandbox** : `+22961000000`
    - **Orange CI Sandbox** : `+22507000000`
-   - Autres numéros de test : voir [Numéros de test](/paiements/testing)
+   - Autres numéros de test : voir [Numéros de test](/paiements/tests)
 
 Les transactions sandbox sont visibles sur [app.zayono.com → Transactions](https://app.zayono.com/payments/transactions) en mode sandbox.
 

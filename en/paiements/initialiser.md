@@ -140,7 +140,7 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 ::: tip Fees passed on to the customer
 - `amount` = what **the merchant receives** (the amount you requested).
 - `amount_charged` = what **the customer actually pays**, fees included.
-- `fee_percent` = the percentage applied to this method (configurable in [Routing rules](/en/routage/regles)).
+- `fee_percent` = the percentage applied to this method (configurable in from your dashboard (Methods)).
 
 If the selected method has a zero or unset `fee_percent`, then `amount_charged === amount` and `fee_percent` is `null`.
 :::
@@ -148,7 +148,7 @@ If the selected method has a zero or unset `fee_percent`, then `amount_charged =
 ::: info About `checkout_url`
 For Mobile Money payments, `checkout_url` is always `null` — the flow runs through an OTP on the customer's phone, with no web redirect. For card payments or for the few operators that require an intermediate page (rare), `checkout_url` contains the URL to redirect the customer to.
 
-If you want a **hosted payment page** in every case (with operator selection on the customer side), use the dedicated [`POST /v1/checkout/initialize`](/en/checkout/introduction) endpoint instead — its response always populates `checkout_url`.
+If you want a **hosted payment page** in every case (with operator selection on the customer side), use the dedicated [`POST /v1/checkout/initialize`](/en/paiements/integration-standard) endpoint instead — its response always populates `checkout_url`.
 :::
 
 ### 202 — Accepted but processing failed

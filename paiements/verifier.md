@@ -80,5 +80,5 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 | `cancelled` | Paiement annule |
 
 ::: tip Conseil
-Privilegiez les [webhooks](/webhooks/introduction) pour etre notifie des changements de statut plutot que de faire du polling sur cet endpoint.
+Privilegiez les [webhooks](/introduction/webhooks) pour etre notifie des changements de statut plutot que de faire du polling sur cet endpoint.
 :::

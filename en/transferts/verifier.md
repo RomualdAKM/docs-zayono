@@ -65,5 +65,5 @@ const data = await response.json()
 ```
 
 ::: tip
-Prefer [webhooks](/en/webhooks/introduction) to be notified automatically of status changes.
+Prefer [webhooks](/en/introduction/webhooks) to be notified automatically of status changes.
 :::

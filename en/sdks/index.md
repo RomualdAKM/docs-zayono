@@ -1,4 +1,4 @@
-# Official SDKs
+﻿# Official SDKs
 
 Zayono publishes maintained SDKs for the 4 most-used languages in payment integration. They wrap authentication, automatic retries, pagination, webhook signature verification, and expose a typed API idiomatic to the host language.
 
@@ -39,11 +39,11 @@ All Zayono SDKs share the following conventions — learn them once, use them ev
 
 ### Authentication
 
-Every request uses an API key in the `zyn_test_...` (sandbox) or `zyn_live_...` (live) format, passed in the `Authorization: Bearer <key>` header. See [Authentication](/en/guide/authentification).
+Every request uses an API key in the `zyn_test_...` (sandbox) or `zyn_live_...` (live) format, passed in the `Authorization: Bearer <key>` header. See [Authentication](/en/introduction/authentification).
 
 ### Idempotency
 
-All mutating requests (POST / PATCH / DELETE) accept an `Idempotency-Key` header. The SDKs generate one automatically if you don't supply it. See [Idempotency](/en/guide/idempotence).
+All mutating requests (POST / PATCH / DELETE) accept an `Idempotency-Key` header. The SDKs generate one automatically if you don't supply it. See [Idempotency](/en/introduction/format-reponses).
 
 ### Retries
 
@@ -78,11 +78,11 @@ The SDKs throw a typed exception per error class:
 - `ServerException` — 5xx (already retried)
 - `NetworkException` — connection failure / timeout
 
-See [Error handling](/en/guide/gestion-erreurs).
+See [Error handling](/en/introduction/erreurs).
 
 ### Webhooks
 
-Each SDK exposes a `verifyWebhook(payload, signature, secret)` helper that validates the HMAC-SHA256 signature of the raw body and returns `true`/`false`. See [Signature verification](/en/webhooks/verification-signature).
+Each SDK exposes a `verifyWebhook(payload, signature, secret)` helper that validates the HMAC-SHA256 signature of the raw body and returns `true`/`false`. See [Signature verification](/en/introduction/webhooks#verification-de-signature).
 
 ## Distribution
 
@@ -97,7 +97,7 @@ Each SDK exposes a `verifyWebhook(payload, signature, secret)` helper that valid
 
 Every SDK follows [SemVer](https://semver.org):
 
-- **Major** (1.x → 2.x): breaking changes documented in the [Changelog](/en/ressources/changelog)
+- **Major** (1.x → 2.x): breaking changes documented in the [Changelog](https://github.com/zayono)
 - **Minor** (1.0 → 1.1) : new backward-compatible features
 - **Patch** (1.0.0 → 1.0.1): bugfixes
 

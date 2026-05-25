@@ -1,4 +1,4 @@
-# SDKs officiels
+﻿# SDKs officiels
 
 Zayono publie des SDKs maintenus pour les 4 langages les plus utilisés en intégration paiement. Ils encapsulent l'authentification, les retries automatiques, la pagination, la vérification de signature webhook, et exposent une API typée idiomatique au langage hôte.
 
@@ -39,11 +39,11 @@ Tous les SDKs Zayono partagent les conventions suivantes — apprenez-les une fo
 
 ### Authentification
 
-Toutes les requêtes utilisent une clé API au format `zyn_test_...` (sandbox) ou `zyn_live_...` (live), passée en header `Authorization: Bearer <clé>`. Voir [Authentification](/guide/authentification).
+Toutes les requêtes utilisent une clé API au format `zyn_test_...` (sandbox) ou `zyn_live_...` (live), passée en header `Authorization: Bearer <clé>`. Voir [Authentification](/introduction/authentification).
 
 ### Idempotency
 
-Toutes les requêtes mutatives (POST / PATCH / DELETE) acceptent un header `Idempotency-Key`. Les SDKs le génèrent automatiquement si vous ne le fournissez pas. Voir [Idempotence](/guide/idempotence).
+Toutes les requêtes mutatives (POST / PATCH / DELETE) acceptent un header `Idempotency-Key`. Les SDKs le génèrent automatiquement si vous ne le fournissez pas. Voir [Idempotence](/introduction/format-reponses).
 
 ### Retries
 
@@ -78,11 +78,11 @@ Les SDKs lèvent une exception typée par classe d'erreur :
 - `ServerException` — 5xx (déjà retried)
 - `NetworkException` — connexion impossible / timeout
 
-Voir [Gestion des erreurs](/guide/gestion-erreurs).
+Voir [Gestion des erreurs](/introduction/erreurs).
 
 ### Webhooks
 
-Chaque SDK expose un helper `verifyWebhook(payload, signature, secret)` qui valide la signature HMAC-SHA256 du body brut et retourne `true`/`false`. Voir [Vérification de signature](/webhooks/verification-signature).
+Chaque SDK expose un helper `verifyWebhook(payload, signature, secret)` qui valide la signature HMAC-SHA256 du body brut et retourne `true`/`false`. Voir [Vérification de signature](/introduction/webhooks#verification-de-signature).
 
 ## Distribution
 
@@ -97,7 +97,7 @@ Chaque SDK expose un helper `verifyWebhook(payload, signature, secret)` qui vali
 
 Tous les SDKs suivent [SemVer](https://semver.org/lang/fr/) :
 
-- **Majeur** (1.x → 2.x) : breaking changes documentés dans le [Changelog](/ressources/changelog)
+- **Majeur** (1.x → 2.x) : breaking changes documentés dans le [Changelog](https://github.com/zayono)
 - **Mineur** (1.0 → 1.1) : nouvelles features rétro-compatibles
 - **Patch** (1.0.0 → 1.0.1) : bugfixes
 

@@ -80,5 +80,5 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 | `cancelled` | Payment cancelled |
 
 ::: tip
-Prefer [webhooks](/en/webhooks/introduction) to be notified of status changes rather than polling this endpoint.
+Prefer [webhooks](/en/introduction/webhooks) to be notified of status changes rather than polling this endpoint.
 :::

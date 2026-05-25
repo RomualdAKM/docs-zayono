@@ -1,4 +1,4 @@
-# Laravel SDK <span class="zd-tag soon">Bientôt</span>
+﻿# Laravel SDK <span class="zd-tag soon">Bientôt</span>
 
 Le wrapper Laravel officiel (`zayono/zayono-laravel`) — avec service provider, facade, config publishable, middleware webhook et events Laravel — **n'est pas encore publié**. Sa sortie est planifiée mais aucun package Composer correspondant n'existe à ce jour.
 
@@ -116,4 +116,4 @@ Le SDK Laravel (`zayono/zayono-laravel`) apportera :
 - Artisan commands (`zayono:ping`, `zayono:aggregators`, `zayono:test-payment`)
 - Modèles Eloquent optionnels (`ZayonoPayment`, `ZayonoPayout`)
 
-Suivez la sortie sur le [Changelog](/ressources/changelog) ou via les annonces sur le [dashboard](https://app.zayono.com).
+Suivez la sortie sur le [Changelog](https://github.com/zayono) ou via les annonces sur le [dashboard](https://app.zayono.com).

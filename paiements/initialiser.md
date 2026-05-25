@@ -140,7 +140,7 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 ::: tip Frais repercutes au client
 - `amount` = ce que **le marchand recoit** (montant que vous avez demande).
 - `amount_charged` = ce que **le client paie reellement**, frais inclus.
-- `fee_percent` = le pourcentage appliqué a cette methode (configurable dans [Regles de routage](/routage/regles)).
+- `fee_percent` = le pourcentage appliqué a cette methode (configurable dans depuis votre tableau de bord (Méthodes)).
 
 Si la methode choisie a un `fee_percent` nul ou non configure, alors `amount_charged === amount` et `fee_percent` vaut `null`.
 :::
@@ -148,7 +148,7 @@ Si la methode choisie a un `fee_percent` nul ou non configure, alors `amount_cha
 ::: info A propos de `checkout_url`
 Pour les paiements Mobile Money, `checkout_url` est toujours `null` — le flux se deroule par OTP sur le telephone du client, sans redirection web. Pour les paiements par carte ou certains operateurs qui exigent une page intermediaire (rare), `checkout_url` contient l'URL vers laquelle rediriger le client.
 
-Si vous voulez systematiquement une **page de paiement hebergee** (avec selection de l'operateur cote client), utilisez plutot l'endpoint dedie [`POST /v1/checkout/initialize`](/checkout/introduction) — sa reponse expose un `checkout_url` toujours peuple.
+Si vous voulez systematiquement une **page de paiement hebergee** (avec selection de l'operateur cote client), utilisez plutot l'endpoint dedie [`POST /v1/checkout/initialize`](/paiements/integration-standard) — sa reponse expose un `checkout_url` toujours peuple.
 :::
 
 ### 202 — Accepte mais traitement echoue

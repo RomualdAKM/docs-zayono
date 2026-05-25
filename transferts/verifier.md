@@ -65,5 +65,5 @@ const data = await response.json()
 ```
 
 ::: tip Conseil
-Privilegiez les [webhooks](/webhooks/introduction) pour etre notifie automatiquement des changements de statut.
+Privilegiez les [webhooks](/introduction/webhooks) pour etre notifie automatiquement des changements de statut.
 :::

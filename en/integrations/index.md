@@ -1,4 +1,4 @@
-# E-commerce integrations
+﻿# E-commerce integrations
 
 Plug Zayono into your store without writing code.
 
@@ -37,4 +37,4 @@ Plug Zayono into your store without writing code.
 
 If you use a custom stack (Symfony, Rails, Django, Next.js, etc.), go through one of our [SDKs](/en/sdks/) directly. You get full control over checkout UX and webhook handling.
 
-For no-code integrations (Zapier, Make, n8n, Bubble, Webflow), a webhook + public API connection is enough. See [the API reference](/en/api/introduction) for endpoints.
+For no-code integrations (Zapier, Make, n8n, Bubble, Webflow), a webhook + public API connection is enough. See [the API reference](/en/paiements/initialiser) for endpoints.
