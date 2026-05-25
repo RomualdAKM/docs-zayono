@@ -443,3 +443,13 @@
     max-width: 1380px;
   }
 }
+
+/* ─── Dark-mode logo fix ────────────────────────────────────────── */
+/* The brand logo is dark navy on transparent background. Without a
+   dedicated white variant, invert + brighten so it stays legible on
+   the dark navbar. VitePress toggles `.dark` on <html>. */
+html.dark .VPNavBarTitle .logo,
+html.dark .VPImage,
+html.dark .VPHero .image img[src*="logo"] {
+  filter: brightness(0) invert(1);
+}
