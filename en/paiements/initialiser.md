@@ -20,15 +20,15 @@ Creates a new payment transaction. If an `operator` is specified, the payment is
 ## Parameters
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Payment amount (minimum: 1)' },
+  { name: 'amount', type: 'number', required: true, description: 'Payment amount (minimum: 1, maximum: 10,000,000)' },
   { name: 'currency', type: 'string', required: true, description: 'ISO 4217 currency code (e.g. XOF, XAF, GHS)' },
   { name: 'description', type: 'string', required: true, description: 'Payment description (max 255 characters)' },
   { name: 'return_url', type: 'string', required: true, description: 'Redirect URL after payment (max 500 characters)' },
   { name: 'customer', type: 'object', required: true, description: 'Customer information' },
-  { name: 'customer.email', type: 'string', required: true, description: 'Customer email address', nested: true },
+  { name: 'customer.email', type: 'string', required: true, description: 'Customer email address (max 255)', nested: true },
   { name: 'customer.first_name', type: 'string', required: true, description: 'Customer first name (max 100)', nested: true },
   { name: 'customer.last_name', type: 'string', required: true, description: 'Customer last name (max 100)', nested: true },
-  { name: 'customer.phone', type: 'string', required: false, description: 'Phone number (max 20)', nested: true },
+  { name: 'customer.phone', type: 'string', required: false, description: 'International phone number (regex ^\\+?[0-9]{8,15}$)', nested: true },
   { name: 'customer.country', type: 'string', required: false, description: 'ISO 3166-1 alpha-2 country code', nested: true },
   { name: 'metadata', type: 'object', required: false, description: 'Custom data (key-value pairs)' },
   { name: 'methods', type: 'array', required: false, description: 'Filter accepted payment methods' },
@@ -126,8 +126,6 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     "id": "9e5f6a7b-8c9d-4e3f-a1b2-c3d4e5f6a7b8",
     "status": "initiated",
     "amount": 5000,
-    "amount_charged": 5100,
-    "fee_percent": 2,
     "currency": "XOF",
     "checkout_url": null,
     "return_url": "https://your-site.com/payment/return",
@@ -138,11 +136,7 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 ```
 
 ::: tip Fees passed on to the customer
-- `amount` = what **the merchant receives** (the amount you requested).
-- `amount_charged` = what **the customer actually pays**, fees included.
-- `fee_percent` = the percentage applied to this method (configurable in from your dashboard (Methods)).
-
-If the selected method has a zero or unset `fee_percent`, then `amount_charged === amount` and `fee_percent` is `null`.
+If the selected method has a `fee_percent` configured on your account, the amount charged to the customer is automatically increased. You can fetch the breakdown (`amount`, `amount_charged`, `fee_percent`) by calling [`GET /v1/payments/{id}`](/en/paiements/retrouver) after initialization or by listening to the `payment.successful` webhook which includes these fields.
 :::
 
 ::: info About `checkout_url`

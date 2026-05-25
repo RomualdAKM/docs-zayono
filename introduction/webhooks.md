@@ -7,16 +7,17 @@ Les webhooks vous permettent d'être notifié en temps réel des événements qu
 ### Événements de paiement
 
 | Événement | Description |
-|-----------|-------------|
+|---|---|
 | `payment.initialized` | Un paiement a été créé et est en attente de traitement |
 | `payment.successful` | Un paiement a été effectué avec succès |
 | `payment.failed` | Un paiement a échoué |
 | `payment.cancelled` | Un paiement a été annulé par le client |
+| `payment.refunded` | Un paiement a été remboursé |
 
 ### Événements de transfert
 
 | Événement | Description |
-|-----------|-------------|
+|---|---|
 | `payout.initialized` | Un transfert a été créé et est en attente de traitement |
 | `payout.successful` | Un transfert a été effectué avec succès |
 | `payout.failed` | Un transfert a échoué |
@@ -34,21 +35,63 @@ Tous les webhooks sont envoyés en `POST` vers votre URL configurée, avec un co
     "type": "payment",
     "status": "success",
     "amount": 5000,
+    "amount_charged": 5100,
+    "fee_percent": 2,
     "currency": "XOF",
     "operator": "mtn_bj",
+    "country": "BJ",
+    "aggregator_code": "fedapay",
+    "environment": "live",
     "customer": {
-      "email": "jean@example.com",
-      "phone": "+22990123456"
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "phone": "+22990123456",
+      "email": "jean@example.com"
     },
     "metadata": {
       "order_id": "ORD-2025-001"
     },
+    "failure_reason": null,
     "processed_at": "2026-05-15T10:31:00+00:00",
     "created_at": "2026-05-15T10:30:00+00:00"
   },
   "sent_at": "2026-05-15T10:31:02+00:00"
 }
 ```
+
+### Champs du payload
+
+| Champ | Type | Description |
+|---|---|---|
+| `event` | `string` | Nom de l'événement (`payment.successful`, `payout.failed`, etc.) |
+| `data.id` | `string` | UUID de la transaction |
+| `data.type` | `string` | `payment` ou `payout` |
+| `data.status` | `string` | Statut final de la transaction |
+| `data.amount` | `number` | Montant net (ce que le marchand reçoit) |
+| `data.amount_charged` | `number` | Montant facturé au client (= `amount` + frais si `fee_percent > 0`) |
+| `data.fee_percent` | `number \| null` | Pourcentage de frais appliqué (si configuré sur la méthode) |
+| `data.currency` | `string` | Code ISO 4217 |
+| `data.operator` | `string \| null` | Code de l'opérateur (ex: `mtn_bj`) |
+| `data.country` | `string \| null` | Code ISO 3166-1 alpha-2 |
+| `data.aggregator_code` | `string \| null` | Agrégateur utilisé (`pawapay`, `fedapay`, `stripe`…) |
+| `data.environment` | `string` | `live` ou `sandbox` |
+| `data.customer` | `object \| null` | Informations client (`id`, `phone`, `email`) |
+| `data.metadata` | `object` | Métadonnées que vous avez passées à l'initialisation |
+| `data.failure_reason` | `string \| null` | Cause de l'échec (statut `failed` uniquement) |
+| `data.processed_at` | `string \| null` | Date de finalisation (ISO 8601) |
+| `data.created_at` | `string` | Date de création (ISO 8601) |
+| `sent_at` | `string` | Date d'envoi du webhook (ISO 8601) |
+
+## En-têtes HTTP
+
+Chaque requête webhook envoyée par Zayono contient les en-têtes suivants :
+
+| En-tête | Description |
+|---|---|
+| `Content-Type` | `application/json` |
+| `User-Agent` | `Zayono-Webhook/1.0` |
+| `X-Zayono-Signature` | Signature HMAC-SHA256 (voir [Vérification de signature](#verification-de-signature)) |
+| `X-Zayono-Event` | Nom de l'événement (utile pour router sans parser le body) |
+| `X-Zayono-Delivery-Id` | UUID de cette livraison (utile pour l'idempotence) |
 
 ## Configuration
 
@@ -61,7 +104,7 @@ Configurez vos webhooks depuis votre [tableau de bord Zayono](https://app.zayono
 Votre endpoint webhook doit :
 
 1. Accepter les requêtes `POST` en `application/json`
-2. Répondre rapidement avec un code `2xx` (idéalement en moins de 5 secondes)
+2. Répondre rapidement avec un code `2xx` (timeout côté Zayono : **10 secondes**)
 3. Traiter la logique métier de manière asynchrone si besoin
 
 ::: warning Endpoint public
@@ -117,6 +160,9 @@ app.post('/webhooks/zayono', express.raw({ type: 'application/json' }), (req, re
     case 'payment.failed':
       // Notifier le client de l'échec
       break
+    case 'payment.refunded':
+      // Inverser la commande / créditer le client
+      break
     case 'payout.successful':
       // Confirmer le transfert
       break
@@ -143,6 +189,7 @@ $event = json_decode($payload, true);
 match ($event['event']) {
     'payment.successful' => /* Marquer la commande comme payée */,
     'payment.failed'     => /* Notifier l'échec */,
+    'payment.refunded'   => /* Inverser la commande */,
     'payout.successful'  => /* Confirmer le transfert */,
     default              => null,
 };
@@ -154,6 +201,7 @@ echo 'OK';
 ```python [Python]
 import hmac
 import hashlib
+import os
 from flask import Flask, request, abort
 
 app = Flask(__name__)
@@ -179,8 +227,8 @@ def webhook():
     if event['event'] == 'payment.successful':
         # Marquer la commande comme payée
         pass
-    elif event['event'] == 'payment.failed':
-        # Notifier l'échec
+    elif event['event'] == 'payment.refunded':
+        # Inverser la commande
         pass
 
     return 'OK', 200
@@ -195,20 +243,20 @@ def webhook():
 
 ## Politique de retry
 
-Si votre serveur ne répond pas avec un code `2xx` dans les 30 secondes, Zayono réessaie automatiquement :
+Si votre serveur ne répond pas avec un code `2xx` dans les **10 secondes**, Zayono réessaie automatiquement avec un backoff exponentiel :
 
-| Tentative | Délai après l'échec précédent |
-|-----------|-------------------------------|
+| Tentative | Délai avant l'essai |
+|---|---|
 | 1ʳᵉ | Immédiate |
-| 2ᵉ | ~1 minute |
-| 3ᵉ | ~5 minutes |
+| 2ᵉ | 10 secondes après l'échec |
+| 3ᵉ | 60 secondes après l'échec |
 
 Après 3 tentatives échouées, le webhook est marqué comme `failed` dans le dashboard. Vous pouvez le **rejouer manuellement** depuis l'interface webhooks.
 
 ## Bonnes pratiques
 
-- **Répondez en moins de 5 secondes** avec `200 OK`, puis traitez la logique métier en arrière-plan
-- **Gérez l'idempotence** : un même événement peut être livré plusieurs fois — comparez `data.id` à votre base avant d'agir
+- **Répondez en moins de 10 secondes** avec `200 OK`, puis traitez la logique métier en arrière-plan
+- **Gérez l'idempotence** : utilisez l'en-tête `X-Zayono-Delivery-Id` comme clé d'idempotence — Zayono peut livrer le même event plusieurs fois (3 retries possibles)
 - **Loggez les payloads bruts** pour le debugging et la conformité
 - **Utilisez HTTPS** systématiquement
 - **Surveillez l'historique des webhooks** dans le dashboard pour détecter les échecs récurrents

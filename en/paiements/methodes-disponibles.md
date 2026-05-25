@@ -1,89 +1,167 @@
 # Available methods
 
-List of payment methods supported by Zayono. The `code` field is what you pass in the `operator` parameter when initializing a payment, or what you find in webhooks.
+List of payment methods supported by Zayono. The `code` field is what you pass in the `operator` parameter when initializing a payment, or what you find in webhook payloads.
 
 ::: tip Fetch the live list
-The `GET /v1/operators` endpoint returns the up-to-date list of methods enabled on your account, based on your routing configuration and the current environment (sandbox / live).
+The `GET /v1/operators` endpoint returns the up-to-date list of methods enabled on your account, based on your routing configuration and the current environment (sandbox / live). The catalogue below reflects the operators implemented platform-side — actual availability depends on the aggregators connected to your account.
 :::
 
 ## Mobile Money
 
+### West Africa — UEMOA zone (XOF)
+
+| Method | Code | Country |
+|---|---|---|
+| MTN Mobile Money | `mtn_bj` | BJ |
+| Moov Money | `moov_bj` | BJ |
+| Celtiis | `celtiis_bj` | BJ |
+| MTN Mobile Money CI | `mtn_ci` | CI |
+| Orange Money CI | `orange_ci` | CI |
+| Moov Money CI | `moov_ci` | CI |
+| Orange Money Senegal | `orange_sn` | SN |
+| Free Money Senegal | `free_sn` | SN |
+| Expresso Senegal | `expresso_sn` | SN |
+| Wizall Senegal | `wizall_sn` | SN |
+| E-Money Senegal | `emoney_sn` | SN |
+| MTN Togo | `mtn_tg` | TG |
+| Moov Togo | `moov_tg` | TG |
+| T-Money / Mixx by Yas Togo | `tmoney_tg` | TG |
+| Airtel Money Niger | `airtel_ne` | NE |
+| MTN Niger | `mtn_ne` | NE |
+| Moov Niger | `moov_ne` | NE |
+| ZamaniCash Niger | `zamani_ne` | NE |
+| Orange Money Mali | `orange_ml` | ML |
+| Moov Mali | `moov_ml` | ML |
+| Mobicash Mali | `mobicash_ml` | ML |
+| Orange Money Burkina | `orange_bf` | BF |
+| Moov Burkina | `moov_bf` | BF |
+| MTN Burkina | `mtn_bf` | BF |
+| Onatel / Telmob Burkina | `onatel_bf` | BF |
+
+### Central Africa — CEMAC zone (XAF)
+
+| Method | Code | Country |
+|---|---|---|
+| MTN Cameroon | `mtn_cm` | CM |
+| Orange Money Cameroon | `orange_cm` | CM |
+| MTN Congo | `mtn_cg` | CG |
+| Airtel Congo | `airtel_cg` | CG |
+| Airtel Money Gabon | `airtel_ga` | GA |
+
+### West Africa (other currencies)
+
 | Method | Code | Currency | Country |
 |---|---|---|---|
-| MTN Mobile Money Benin | `mtn_bj` | XOF | BJ |
-| Moov Money Benin | `moov_bj` | XOF | BJ |
-| Celtiis Cash Benin | `celtiis_bj` | XOF | BJ |
-| Orange Money Côte d'Ivoire | `orange_ci` | XOF | CI |
-| MTN Mobile Money Côte d'Ivoire | `mtn_ci` | XOF | CI |
-| Moov Money Côte d'Ivoire | `moov_ci` | XOF | CI |
-| Wave Côte d'Ivoire | `wave_ci` | XOF | CI |
-| Orange Money Senegal | `orange_sn` | XOF | SN |
-| Free Money Senegal | `free_sn` | XOF | SN |
-| Wave Senegal | `wave_sn` | XOF | SN |
-| Expresso Senegal | `expresso_sn` | XOF | SN |
-| Orange Money Mali | `orange_ml` | XOF | ML |
-| Moov Money Mali | `moov_ml` | XOF | ML |
-| Orange Money Burkina Faso | `orange_bf` | XOF | BF |
-| Moov Money Burkina Faso | `moov_bf` | XOF | BF |
-| Orange Money Niger | `orange_ne` | XOF | NE |
-| Moov Money Togo | `moov_tg` | XOF | TG |
-| T-Money Togo | `tmoney_tg` | XOF | TG |
-| Yas Togo | `yas_tg` | XOF | TG |
-| MTN Mobile Money Cameroon | `mtn_cm` | XAF | CM |
-| Orange Money Cameroon | `orange_cm` | XAF | CM |
-| Airtel Money Gabon | `airtel_ga` | XAF | GA |
-| Moov Money Gabon | `moov_ga` | XAF | GA |
-| MTN Mobile Money Congo | `mtn_cg` | XAF | CG |
-| Airtel Money Congo | `airtel_cg` | XAF | CG |
-| Orange Money DRC | `orange_cd` | CDF | CD |
-| Airtel Money DRC | `airtel_cd` | CDF | CD |
-| Vodacom M-Pesa DRC | `mpesa_cd` | CDF | CD |
-| MTN Mobile Money Guinea | `mtn_gn` | GNF | GN |
+| MTN MoMo Guinea | `mtn_gn` | GNF | GN |
 | Orange Money Guinea | `orange_gn` | GNF | GN |
-| MTN Mobile Money Ghana | `mtn_gh` | GHS | GH |
+| MTN Ghana | `mtn_gh` | GHS | GH |
 | AirtelTigo Ghana | `airteltigo_gh` | GHS | GH |
-| Vodafone Cash Ghana | `vodafone_gh` | GHS | GH |
-| Safaricom M-Pesa Kenya | `mpesa_ke` | KES | KE |
-| Airtel Money Kenya | `airtel_ke` | KES | KE |
-| MTN Mobile Money Uganda | `mtn_ug` | UGX | UG |
-| Airtel Money Uganda | `airtel_ug` | UGX | UG |
-| Vodacom M-Pesa Tanzania | `mpesa_tz` | TZS | TZ |
-| Tigo Pesa Tanzania | `tigo_tz` | TZS | TZ |
+| Telecel Cash Ghana | `vodafone_gh` | GHS | GH |
+| MTN MoMo Nigeria | `mtn_ng` | NGN | NG |
+| Airtel Money Nigeria | `airtel_ng` | NGN | NG |
+| Orange Money Sierra Leone | `orange_sl` | SLE | SL |
+
+### East Africa
+
+| Method | Code | Currency | Country |
+|---|---|---|---|
+| M-Pesa Kenya | `mpesa_ke` | KES | KE |
+| MTN Uganda | `mtn_ug` | UGX | UG |
+| Airtel Uganda | `airtel_ug` | UGX | UG |
+| Vodacom M-Pesa Tanzania | `vodacom_tz` | TZS | TZ |
 | Airtel Money Tanzania | `airtel_tz` | TZS | TZ |
-| MTN Mobile Money Rwanda | `mtn_rw` | RWF | RW |
-| Airtel Money Rwanda | `airtel_rw` | RWF | RW |
-| MTN Mobile Money Zambia | `mtn_zm` | ZMW | ZM |
-| Airtel Money Zambia | `airtel_zm` | ZMW | ZM |
+| Tigo Pesa Tanzania | `tigo_tz` | TZS | TZ |
+| Halotel Tanzania | `halotel_tz` | TZS | TZ |
+| MTN Rwanda | `mtn_rw` | RWF | RW |
+| Airtel Rwanda | `airtel_rw` | RWF | RW |
+| M-Pesa Ethiopia | `mpesa_et` | ETB | ET |
+
+### Central Africa / DRC
+
+| Method | Code | Currency | Country |
+|---|---|---|---|
+| Vodacom M-Pesa DRC | `vodacom_cd` | CDF | CD |
+| Airtel Money DRC | `airtel_cd` | CDF | CD |
+| Orange Money DRC | `orange_cd` | CDF | CD |
+
+### Southern Africa
+
+| Method | Code | Currency | Country |
+|---|---|---|---|
+| MTN Zambia | `mtn_zm` | ZMW | ZM |
+| Airtel Zambia | `airtel_zm` | ZMW | ZM |
+| Zamtel Zambia | `zamtel_zm` | ZMW | ZM |
+| Airtel Money Malawi | `airtel_mw` | MWK | MW |
+| TNM Mpamba Malawi | `tnm_mw` | MWK | MW |
+| Movitel Mozambique | `movitel_mz` | MZN | MZ |
+| Vodacom M-Pesa Mozambique | `vodacom_mz` | MZN | MZ |
+| M-Pesa Lesotho | `mpesa_ls` | LSL | LS |
+
+## Wallets
+
+Payment apps with their own checkout UX (external hosted page, QR scan, etc.). Distinct from traditional Mobile Money operators.
+
+| Method | Code | Currency | Country |
+|---|---|---|---|
+| Wave Côte d'Ivoire | `wave_ci` | XOF | CI |
+| Wave Senegal | `wave_sn` | XOF | SN |
+| Djamo Côte d'Ivoire | `djamo_ci` | XOF | CI |
+| Djamo Senegal | `djamo_sn` | XOF | SN |
 
 ## Cards
 
-| Method | Code | Currencies | Coverage |
+| Method | Code | Currency | Country |
 |---|---|---|---|
-| Visa / Mastercard XOF | `card_xof` | XOF | UEMOA zone |
-| Visa / Mastercard XAF | `card_xaf` | XAF | CEMAC zone |
-| Visa / Mastercard NGN | `card_ngn` | NGN | Nigeria |
-| Visa / Mastercard GHS | `card_ghs` | GHS | Ghana |
-| Visa / Mastercard KES | `card_kes` | KES | Kenya |
-| Visa / Mastercard ZAR | `card_zar` | ZAR | South Africa |
-| Visa / Mastercard USD | `card_usd` | USD | International |
-| Visa / Mastercard EUR | `card_eur` | EUR | International |
+| Card — Nigeria | `card_ng` | NGN | NG |
+| Card — Ghana | `card_gh` | GHS | GH |
+| Card — Kenya | `card_ke` | KES | KE |
+| Card — South Africa | `card_za` | ZAR | ZA |
+| Card — Cameroon | `card_cm` | XAF | CM |
+| Card — Côte d'Ivoire | `card_ci` | XOF | CI |
+| USD Card — Nigeria | `card_usd_ng` | USD | NG |
+| USD Card — Kenya | `card_usd_ke` | USD | KE |
+| International card | `card` | * | XX |
+
+::: tip International card
+The `card` code is for non-African card payments (via Stripe). Currency is open — Stripe accepts any currency and settles in yours.
+:::
 
 ## Bank transfer
 
-| Method | Code | Currency | Coverage |
+| Method | Code | Currency | Country |
 |---|---|---|---|
-| Bank Transfer Nigeria | `bank_transfer_ng` | NGN | NG |
-| Bank Transfer Ghana | `bank_transfer_gh` | GHS | GH |
-| Bank Transfer Kenya | `bank_transfer_ke` | KES | KE |
-| Bank Transfer South Africa | `bank_transfer_za` | ZAR | ZA |
+| Bank Transfer Nigeria | `bank_ng` | NGN | NG |
+| Bank Transfer Ghana | `bank_gh` | GHS | GH |
+| Bank Account Debit — Nigeria | `bank_debit_ng` | NGN | NG |
+
+## USSD / QR (Nigeria)
+
+Nigeria-specific methods exposed via Paystack.
+
+| Method | Code | Currency | Country |
+|---|---|---|---|
+| USSD — Nigeria | `ussd_ng` | NGN | NG |
+| QR — Nigeria | `qr_ng` | NGN | NG |
+| EFT — South Africa | `eft_za` | ZAR | ZA |
 
 ## Crypto
 
-| Method | Code | Settlement currencies | Pricing currencies |
-|---|---|---|---|
-| Crypto (BTC, ETH, USDC, USDT…) | `crypto` | BTC, ETH, USDC, USDT, DAI | USD, EUR, GBP, XOF, XAF, NGN, ZAR |
+The customer pays in crypto, you price and settle in a **fiat reference currency** (XOF, XAF, NGN, GHS, USD or EUR). The customer picks the crypto on the hosted page (BTC, BCH, ETH, LTC, USDC).
 
-Crypto payments let you **price in fiat currency** (your local currency) while the customer pays in the crypto of their choice. Settlement happens in crypto on your wallet, or in fiat on your Zayono account depending on your configuration.
+| Method | Code | Reference currency | Country |
+|---|---|---|---|
+| Crypto — XAF reference (BEAC) | `crypto_xaf` | XAF | CM |
+| Crypto — XOF reference (UEMOA) | `crypto_xof` | XOF | CI |
+| Crypto — NGN reference | `crypto_ngn` | NGN | NG |
+| Crypto — GHS reference | `crypto_ghs` | GHS | GH |
+| Crypto — USD reference | `crypto_usd` | USD | International |
+| Crypto — EUR reference | `crypto_eur` | EUR | International |
+| Multi-asset crypto (Cryptomus) | `crypto_global` | * | International |
+
+::: tip `crypto_global` vs `crypto_*`
+- `crypto_*` (with a currency) → routed via Coinbase Commerce, priced in the local currency, live-converted to crypto on the payment page.
+- `crypto_global` → routed via Cryptomus, the merchant passes the target crypto and amount directly.
+:::
 
 ## Catalogue evolution
 

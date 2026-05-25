@@ -12,6 +12,7 @@ Webhooks let your server be notified in real time when something happens on your
 | `payment.successful` | A payment was completed successfully |
 | `payment.failed` | A payment failed |
 | `payment.cancelled` | A payment was cancelled by the customer |
+| `payment.refunded` | A payment was refunded |
 
 ### Payout events
 
@@ -34,21 +35,63 @@ All webhooks are sent as `POST` to your configured URL, with a JSON body contain
     "type": "payment",
     "status": "success",
     "amount": 5000,
+    "amount_charged": 5100,
+    "fee_percent": 2,
     "currency": "XOF",
     "operator": "mtn_bj",
+    "country": "BJ",
+    "aggregator_code": "fedapay",
+    "environment": "live",
     "customer": {
-      "email": "john@example.com",
-      "phone": "+22990123456"
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "phone": "+22990123456",
+      "email": "john@example.com"
     },
     "metadata": {
       "order_id": "ORD-2025-001"
     },
+    "failure_reason": null,
     "processed_at": "2026-05-15T10:31:00+00:00",
     "created_at": "2026-05-15T10:30:00+00:00"
   },
   "sent_at": "2026-05-15T10:31:02+00:00"
 }
 ```
+
+### Payload fields
+
+| Field | Type | Description |
+|---|---|---|
+| `event` | `string` | Event name (`payment.successful`, `payout.failed`, etc.) |
+| `data.id` | `string` | Transaction UUID |
+| `data.type` | `string` | `payment` or `payout` |
+| `data.status` | `string` | Final transaction status |
+| `data.amount` | `number` | Net amount (what the merchant receives) |
+| `data.amount_charged` | `number` | Amount charged to the customer (= `amount` + fees if `fee_percent > 0`) |
+| `data.fee_percent` | `number \| null` | Fee percentage applied (if configured on the method) |
+| `data.currency` | `string` | ISO 4217 code |
+| `data.operator` | `string \| null` | Operator code (e.g. `mtn_bj`) |
+| `data.country` | `string \| null` | ISO 3166-1 alpha-2 code |
+| `data.aggregator_code` | `string \| null` | Aggregator used (`pawapay`, `fedapay`, `stripe`…) |
+| `data.environment` | `string` | `live` or `sandbox` |
+| `data.customer` | `object \| null` | Customer info (`id`, `phone`, `email`) |
+| `data.metadata` | `object` | Metadata you passed at initialization |
+| `data.failure_reason` | `string \| null` | Failure cause (`failed` status only) |
+| `data.processed_at` | `string \| null` | Completion date (ISO 8601) |
+| `data.created_at` | `string` | Creation date (ISO 8601) |
+| `sent_at` | `string` | Webhook send date (ISO 8601) |
+
+## HTTP headers
+
+Every webhook request sent by Zayono includes the following headers:
+
+| Header | Description |
+|---|---|
+| `Content-Type` | `application/json` |
+| `User-Agent` | `Zayono-Webhook/1.0` |
+| `X-Zayono-Signature` | HMAC-SHA256 signature (see [Signature verification](#signature-verification)) |
+| `X-Zayono-Event` | Event name (useful for routing without parsing the body) |
+| `X-Zayono-Delivery-Id` | UUID of this delivery (useful for idempotency) |
 
 ## Configuration
 
@@ -61,7 +104,7 @@ When you create an endpoint, you receive a unique **webhook secret**. Keep it sa
 Your webhook endpoint must:
 
 1. Accept `POST` requests with `application/json`
-2. Respond quickly with a `2xx` status code (ideally under 5 seconds)
+2. Respond quickly with a `2xx` status code (Zayono timeout: **10 seconds**)
 3. Process business logic asynchronously if needed
 
 ::: warning Public endpoint
@@ -117,6 +160,9 @@ app.post('/webhooks/zayono', express.raw({ type: 'application/json' }), (req, re
     case 'payment.failed':
       // Notify the customer of the failure
       break
+    case 'payment.refunded':
+      // Reverse the order / credit the customer
+      break
     case 'payout.successful':
       // Confirm the transfer
       break
@@ -143,6 +189,7 @@ $event = json_decode($payload, true);
 match ($event['event']) {
     'payment.successful' => /* Mark the order as paid */,
     'payment.failed'     => /* Notify the failure */,
+    'payment.refunded'   => /* Reverse the order */,
     'payout.successful'  => /* Confirm the transfer */,
     default              => null,
 };
@@ -154,6 +201,7 @@ echo 'OK';
 ```python [Python]
 import hmac
 import hashlib
+import os
 from flask import Flask, request, abort
 
 app = Flask(__name__)
@@ -179,8 +227,8 @@ def webhook():
     if event['event'] == 'payment.successful':
         # Mark the order as paid
         pass
-    elif event['event'] == 'payment.failed':
-        # Notify the failure
+    elif event['event'] == 'payment.refunded':
+        # Reverse the order
         pass
 
     return 'OK', 200
@@ -195,20 +243,20 @@ def webhook():
 
 ## Retry policy
 
-If your server does not respond with a `2xx` status within 30 seconds, Zayono retries automatically:
+If your server does not respond with a `2xx` status within **10 seconds**, Zayono retries automatically with exponential backoff:
 
-| Attempt | Delay after previous failure |
+| Attempt | Delay before retry |
 |---|---|
 | 1st | Immediate |
-| 2nd | ~1 minute |
-| 3rd | ~5 minutes |
+| 2nd | 10 seconds after failure |
+| 3rd | 60 seconds after failure |
 
 After 3 failed attempts, the webhook is marked `failed` in the dashboard. You can **replay it manually** from the webhooks interface.
 
 ## Best practices
 
-- **Respond in under 5 seconds** with `200 OK`, then process business logic in the background
-- **Handle idempotency**: the same event may be delivered multiple times — compare `data.id` against your database before acting
+- **Respond in under 10 seconds** with `200 OK`, then process business logic in the background
+- **Handle idempotency**: use the `X-Zayono-Delivery-Id` header as an idempotency key — Zayono may deliver the same event multiple times (up to 3 retries)
 - **Log raw payloads** for debugging and compliance
 - **Use HTTPS** everywhere
 - **Monitor webhook history** in the dashboard to detect recurring failures

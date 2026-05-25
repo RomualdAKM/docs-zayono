@@ -58,7 +58,6 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     "status": "success",
     "amount": 5000,
     "amount_charged": 5100,
-    "fee_percent": 2,
     "currency": "XOF",
     "operator": "mtn_bj",
     "country": "BJ",
@@ -94,8 +93,7 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 | `type` | `string` | Transaction type (`payment`) |
 | `status` | `string` | Current status |
 | `amount` | `number` | Requested amount (net received by the merchant) |
-| `amount_charged` | `number \| null` | Amount actually charged to the customer, fees included. Equal to `amount` if the method has no `fee_percent`. |
-| `fee_percent` | `number \| null` | Fee percentage applied to this transaction (snapshot of the routing rule `fee_percent` at payment time) |
+| `amount_charged` | `number \| null` | Amount actually charged to the customer, fees included. Equal to `amount` if no fee is configured on the method. |
 | `currency` | `string` | Currency code |
 | `operator` | `string \| null` | Operator code used |
 | `country` | `string \| null` | Country code |

@@ -2,7 +2,7 @@
 
 Le plugin WooCommerce officiel Zayono permet d'accepter Mobile Money + cartes via le checkout natif WooCommerce, sans coder.
 
-- **WordPress.org** : [`wordpress.org/plugins/zayono`](https://wordpress.org/plugins/zayono/)
+- **WordPress.org** : [`wordpress.org/plugins/zayono-woocommerce`](https://wordpress.org/plugins/zayono-woocommerce/)
 - **Source** : [github.com/zayono/zayono-woocommerce](https://github.com/zayono/zayono-woocommerce)
 - **License** : GPL-2.0
 - **WordPress** : 5.8+
@@ -66,13 +66,14 @@ Le statut final est mis à jour automatiquement via webhook — vous n'avez **ri
 
 Le plugin détecte la devise WooCommerce et la transmet à Zayono. Devises supportées :
 
-- **XOF** (Bénin, Togo, Sénégal, Mali, Côte d'Ivoire, Burkina Faso, Niger, Guinée-Bissau)
-- **XAF** (Cameroun, Tchad, Congo, Gabon, RCA, Guinée équatoriale)
+- **XOF** (Bénin, Togo, Sénégal, Mali, Côte d'Ivoire, Burkina Faso, Niger)
+- **XAF** (Cameroun, Congo, Gabon)
 - **GHS** (Ghana)
 - **KES** (Kenya)
 - **NGN** (Nigeria)
-- **ZAR** (Afrique du Sud)
-- **USD**, **EUR** (cartes internationales via Stripe / Coinbase)
+- **ZAR** (Afrique du Sud — cartes Paystack et EFT)
+- **GNF** (Guinée — Mobile Money via Magma OnePay)
+- **USD**, **EUR** (cartes internationales via Stripe ; règlement crypto en USD/EUR via Coinbase Commerce)
 
 Si la devise WooCommerce ne match aucun opérateur disponible, Zayono affichera "Aucun moyen de paiement disponible" — pensez à activer une passerelle compatible depuis votre dashboard.
 
@@ -120,7 +121,7 @@ add_filter('zayono_supported_countries', function () {
 | "Zayono" n'apparaît pas au checkout | Devise WooCommerce non supportée | Vérifier la devise (XOF par défaut) |
 | Webhook jamais reçu | URL webhook incorrecte | URL doit être `?wc-api=zayono_webhook` exactement |
 | Signature invalide dans les logs | Secret webhook désynchronisé | Régénérer le secret côté Zayono dashboard + remettre dans WC |
-| Paiement reste en "Attente" | Webhook bloqué par firewall | Whitelister `backend.zayono.com` (IP affichée sur le dashboard) |
+| Paiement reste en "Attente" | Webhook bloqué par firewall | Vérifier que votre serveur accepte les POST entrants HTTPS depuis Internet (pas de filtrage d'IP par défaut) |
 | 500 au checkout | Plugin de cache trop agressif | Désactiver le cache sur `/?wc-api=*` |
 
 Logs PHP : `wp-content/plugins/zayono-woocommerce/debug.log` (si `WP_DEBUG_LOG=true`).

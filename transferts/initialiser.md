@@ -20,11 +20,11 @@ Cree un nouveau transfert vers un beneficiaire. L'operateur est **obligatoire** 
 ## Parametres
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Montant du transfert (minimum : 1)' },
+  { name: 'amount', type: 'number', required: true, description: 'Montant du transfert (minimum : 1, maximum : 10 000 000)' },
   { name: 'currency', type: 'string', required: true, description: 'Code devise ISO 4217 (ex: XOF, XAF, GHS)' },
   { name: 'operator', type: 'string', required: true, description: 'Code operateur mobile money (ex: mtn_bj, orange_ci)' },
   { name: 'recipient', type: 'object', required: true, description: 'Informations du beneficiaire' },
-  { name: 'recipient.phone', type: 'string', required: true, description: 'Numero de telephone du beneficiaire (max 20)', nested: true },
+  { name: 'recipient.phone', type: 'string', required: true, description: 'Numero du beneficiaire au format international (regex ^\\+?[0-9]{8,15}$)', nested: true },
   { name: 'recipient.first_name', type: 'string', required: true, description: 'Prenom du beneficiaire (max 100)', nested: true },
   { name: 'recipient.last_name', type: 'string', required: true, description: 'Nom de famille du beneficiaire (max 100)', nested: true },
   { name: 'recipient.email', type: 'string', required: false, description: 'Adresse email du beneficiaire', nested: true },

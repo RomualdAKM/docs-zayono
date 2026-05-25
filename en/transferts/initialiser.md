@@ -20,11 +20,11 @@ Creates a new payout to a recipient. The operator is **required** and the payout
 ## Parameters
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Payout amount (minimum: 1)' },
+  { name: 'amount', type: 'number', required: true, description: 'Payout amount (minimum: 1, maximum: 10,000,000)' },
   { name: 'currency', type: 'string', required: true, description: 'ISO 4217 currency code (e.g. XOF, XAF, GHS)' },
   { name: 'operator', type: 'string', required: true, description: 'Mobile money operator code (e.g. mtn_bj, orange_ci)' },
   { name: 'recipient', type: 'object', required: true, description: 'Recipient information' },
-  { name: 'recipient.phone', type: 'string', required: true, description: 'Recipient phone number (max 20)', nested: true },
+  { name: 'recipient.phone', type: 'string', required: true, description: 'Recipient phone in international format (regex ^\\+?[0-9]{8,15}$)', nested: true },
   { name: 'recipient.first_name', type: 'string', required: true, description: 'Recipient first name (max 100)', nested: true },
   { name: 'recipient.last_name', type: 'string', required: true, description: 'Recipient last name (max 100)', nested: true },
   { name: 'recipient.email', type: 'string', required: false, description: 'Recipient email address', nested: true },

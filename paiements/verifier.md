@@ -78,6 +78,7 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 | `success` | Paiement reussi |
 | `failed` | Paiement echoue |
 | `cancelled` | Paiement annule |
+| `refunded` | Paiement rembourse |
 
 ::: tip Conseil
 Privilegiez les [webhooks](/introduction/webhooks) pour etre notifie des changements de statut plutot que de faire du polling sur cet endpoint.

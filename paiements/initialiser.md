@@ -20,15 +20,15 @@ Cree une nouvelle transaction de paiement. Si un `operator` est specifie, le pai
 ## Parametres
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Montant du paiement (minimum : 1)' },
+  { name: 'amount', type: 'number', required: true, description: 'Montant du paiement (minimum : 1, maximum : 10 000 000)' },
   { name: 'currency', type: 'string', required: true, description: 'Code devise ISO 4217 (ex: XOF, XAF, GHS)' },
   { name: 'description', type: 'string', required: true, description: 'Description du paiement (max 255 caracteres)' },
   { name: 'return_url', type: 'string', required: true, description: 'URL de redirection apres paiement (max 500 caracteres)' },
   { name: 'customer', type: 'object', required: true, description: 'Informations du client' },
-  { name: 'customer.email', type: 'string', required: true, description: 'Adresse email du client', nested: true },
+  { name: 'customer.email', type: 'string', required: true, description: 'Adresse email du client (max 255)', nested: true },
   { name: 'customer.first_name', type: 'string', required: true, description: 'Prenom du client (max 100)', nested: true },
   { name: 'customer.last_name', type: 'string', required: true, description: 'Nom de famille du client (max 100)', nested: true },
-  { name: 'customer.phone', type: 'string', required: false, description: 'Numero de telephone (max 20)', nested: true },
+  { name: 'customer.phone', type: 'string', required: false, description: 'Numero de telephone au format international (regex ^\\+?[0-9]{8,15}$)', nested: true },
   { name: 'customer.country', type: 'string', required: false, description: 'Code pays ISO 3166-1 alpha-2', nested: true },
   { name: 'metadata', type: 'object', required: false, description: 'Donnees personnalisees (paires cle-valeur)' },
   { name: 'methods', type: 'array', required: false, description: 'Filtrer les methodes de paiement acceptees' },
@@ -126,23 +126,17 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     "id": "9e5f6a7b-8c9d-4e3f-a1b2-c3d4e5f6a7b8",
     "status": "initiated",
     "amount": 5000,
-    "amount_charged": 5100,
-    "fee_percent": 2,
     "currency": "XOF",
     "checkout_url": null,
     "return_url": "https://votre-site.com/paiement/retour",
-    "created_at": "2025-05-15T10:30:00+00:00"
+    "created_at": "2026-05-15T10:30:00+00:00"
   },
   "errors": null
 }
 ```
 
-::: tip Frais repercutes au client
-- `amount` = ce que **le marchand recoit** (montant que vous avez demande).
-- `amount_charged` = ce que **le client paie reellement**, frais inclus.
-- `fee_percent` = le pourcentage appliqué a cette methode (configurable dans depuis votre tableau de bord (Méthodes)).
-
-Si la methode choisie a un `fee_percent` nul ou non configure, alors `amount_charged === amount` et `fee_percent` vaut `null`.
+::: tip Frais répercutés au client
+Si la méthode choisie a un `fee_percent` configuré sur votre compte, le montant facturé au client est automatiquement augmenté. Vous pouvez consulter le détail (`amount`, `amount_charged`, `fee_percent`) en appelant [`GET /v1/payments/{id}`](/paiements/retrouver) après l'initialisation ou en écoutant le webhook `payment.successful` qui inclut ces champs.
 :::
 
 ::: info A propos de `checkout_url`

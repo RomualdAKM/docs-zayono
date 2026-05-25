@@ -78,6 +78,7 @@ $response = Http::withToken('zyn_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 | `success` | Payment succeeded |
 | `failed` | Payment failed |
 | `cancelled` | Payment cancelled |
+| `refunded` | Payment refunded |
 
 ::: tip
 Prefer [webhooks](/en/introduction/webhooks) to be notified of status changes rather than polling this endpoint.
