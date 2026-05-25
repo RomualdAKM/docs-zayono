@@ -119,8 +119,8 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: { src: '/logo.gif', width: 78, height: 28 },
-    siteTitle: 'Zayono',
+    logo: { src: '/logo.gif', width: 110, height: 32 },
+    siteTitle: false,
 
     nav: [
       { text: 'Introduction', link: '/introduction/authentification' },
