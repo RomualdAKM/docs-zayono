@@ -107,7 +107,7 @@ export default defineConfig({
   lastUpdated: true,
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/favicon.gif', type: 'image/gif' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap', rel: 'stylesheet' }],
@@ -119,7 +119,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: { src: '/logo.svg', width: 28, height: 28 },
+    logo: { src: '/logo.gif', width: 78, height: 28 },
     siteTitle: 'Zayono',
 
     nav: [

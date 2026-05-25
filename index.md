@@ -7,7 +7,7 @@ hero:
   tagline: |
     Une seule intégration pour les principales méthodes de paiement Mobile Money et carte bancaire en Afrique. Acceptez les paiements et envoyez des transferts en quelques lignes de code.
   image:
-    src: /logo.svg
+    src: /logo.gif
     alt: Zayono
   actions:
     - theme: brand

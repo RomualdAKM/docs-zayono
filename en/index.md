@@ -7,7 +7,7 @@ hero:
   tagline: |
     One integration for the main Mobile Money and card payment methods across Africa. Accept payments and send payouts in a few lines of code.
   image:
-    src: /logo.svg
+    src: /logo.gif
     alt: Zayono
   actions:
     - theme: brand
