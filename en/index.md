@@ -18,37 +18,61 @@ hero:
       link: /en/paiements/initialiser
 
 features:
-  - icon: /icons/payment.svg
+  - icon:
+      src: /icons/payment.svg
+      alt: Payments
+      width: 28
+      height: 28
     title: Accept payments
     details: Mobile Money, cards, bank transfers and crypto — one API for every method in Africa.
     link: /en/paiements/initialiser
     linkText: View payments
 
-  - icon: /icons/payout.svg
+  - icon:
+      src: /icons/payout.svg
+      alt: Payouts
+      width: 28
+      height: 28
     title: Send payouts
     details: Pay out funds directly to your recipients' Mobile Money wallets or bank accounts.
     link: /en/transferts/initialiser
     linkText: View payouts
 
-  - icon: /icons/checkout.svg
+  - icon:
+      src: /icons/checkout.svg
+      alt: Integration
+      width: 28
+      height: 28
     title: Standard integration
     details: Redirect your customers to a Zayono-hosted payment page. No PCI-DSS scope.
     link: /en/paiements/integration-standard
     linkText: View integration
 
-  - icon: /icons/webhook.svg
+  - icon:
+      src: /icons/webhook.svg
+      alt: Webhooks
+      width: 28
+      height: 28
     title: Signed webhooks
     details: Get notified in real time on every status change, with verifiable HMAC-SHA256 signature.
     link: /en/introduction/webhooks
     linkText: View webhooks
 
-  - icon: /icons/toolbox.svg
+  - icon:
+      src: /icons/toolbox.svg
+      alt: SDKs
+      width: 28
+      height: 28
     title: Official SDKs
     details: PHP, Node.js and Python. WooCommerce plugin ready to install on WordPress.
     link: /en/sdks/
     linkText: View SDKs
 
-  - icon: /icons/flask.svg
+  - icon:
+      src: /icons/flask.svg
+      alt: Sandbox
+      width: 28
+      height: 28
     title: Full sandbox
     details: Test every payment method for free, with test cards and phone numbers provided.
     link: /en/introduction/tests

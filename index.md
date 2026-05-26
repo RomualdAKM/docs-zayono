@@ -18,37 +18,61 @@ hero:
       link: /paiements/initialiser
 
 features:
-  - icon: /icons/payment.svg
+  - icon:
+      src: /icons/payment.svg
+      alt: Paiements
+      width: 28
+      height: 28
     title: Accepter des paiements
     details: Mobile Money, cartes bancaires, virements et crypto — une seule API pour toutes les méthodes en Afrique.
     link: /paiements/initialiser
     linkText: Voir les paiements
 
-  - icon: /icons/payout.svg
+  - icon:
+      src: /icons/payout.svg
+      alt: Transferts
+      width: 28
+      height: 28
     title: Envoyer des transferts
     details: Versez des fonds directement sur les wallets Mobile Money ou comptes bancaires de vos bénéficiaires.
     link: /transferts/initialiser
     linkText: Voir les transferts
 
-  - icon: /icons/checkout.svg
+  - icon:
+      src: /icons/checkout.svg
+      alt: Intégration
+      width: 28
+      height: 28
     title: Intégration standard
     details: Redirigez vos clients vers une page de paiement hébergée par Zayono. Aucun PCI-DSS à gérer.
     link: /paiements/integration-standard
     linkText: Voir l'intégration
 
-  - icon: /icons/webhook.svg
+  - icon:
+      src: /icons/webhook.svg
+      alt: Webhooks
+      width: 28
+      height: 28
     title: Webhooks signés
     details: Soyez notifié en temps réel à chaque changement de statut, avec signature HMAC-SHA256 vérifiable.
     link: /introduction/webhooks
     linkText: Voir les webhooks
 
-  - icon: /icons/toolbox.svg
+  - icon:
+      src: /icons/toolbox.svg
+      alt: SDKs
+      width: 28
+      height: 28
     title: SDKs officiels
     details: PHP, Node.js et Python. Plugin WooCommerce prêt à l'emploi pour WordPress.
     link: /sdks/
     linkText: Voir les SDKs
 
-  - icon: /icons/flask.svg
+  - icon:
+      src: /icons/flask.svg
+      alt: Sandbox
+      width: 28
+      height: 28
     title: Sandbox complète
     details: Testez chaque méthode de paiement sans frais, avec des cartes et numéros de test fournis.
     link: /introduction/tests

@@ -165,15 +165,20 @@
   margin-bottom: 4px;
 }
 
-.zd-card-icon img {
-  width: 22px;
-  height: 22px;
+.zd-card-icon img,
+.VPFeature .icon img {
   display: block;
   /* SVG icons use currentColor → tint them with the brand color */
   filter: brightness(0) saturate(100%) invert(28%) sepia(98%) saturate(2476%) hue-rotate(213deg) brightness(98%) contrast(94%);
 }
 
-html.dark .zd-card-icon img {
+.zd-card-icon img {
+  width: 22px;
+  height: 22px;
+}
+
+html.dark .zd-card-icon img,
+html.dark .VPFeature .icon img {
   /* In dark mode the brand color is lighter — adjust the filter */
   filter: brightness(0) saturate(100%) invert(64%) sepia(74%) saturate(1851%) hue-rotate(202deg) brightness(102%) contrast(98%);
 }
