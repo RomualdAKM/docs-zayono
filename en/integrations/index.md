@@ -1,35 +1,14 @@
-﻿# E-commerce integrations
+# E-commerce integrations
 
 Plug Zayono into your store without writing code.
 
 <Cards>
   <Card
     title="WooCommerce"
-    description="Official WordPress plugin. Install in 2 minutes."
-    icon="🛒"
+    description="Official WordPress plugin. Mobile Money + cards in native checkout."
+    icon="/icons/woocommerce.svg"
     href="/en/integrations/woocommerce"
     badge="stable"
-  />
-  <Card
-    title="Shopify"
-    description="Shopify app for African Mobile Money."
-    icon="🛍️"
-    href="/en/integrations/shopify"
-    badge="soon"
-  />
-  <Card
-    title="PrestaShop"
-    description="Official module for PrestaShop 1.7+ and 8.x."
-    icon="🏬"
-    href="/en/integrations/prestashop"
-    badge="soon"
-  />
-  <Card
-    title="Magento"
-    description="Magento 2 extension."
-    icon="🧱"
-    href="/en/integrations/magento"
-    badge="soon"
   />
 </Cards>
 

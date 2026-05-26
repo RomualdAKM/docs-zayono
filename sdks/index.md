@@ -6,28 +6,28 @@ Zayono publie des SDKs maintenus pour les 4 langages les plus utilisés en inté
   <Card
     title="PHP SDK"
     description="Composer · PHP 8.1+ · Guzzle 7 · PSR-18"
-    icon="🐘"
+    icon="/icons/php.svg"
     href="/sdks/php"
     badge="stable"
   />
   <Card
     title="Laravel SDK"
     description="Wrapper opinionated du SDK PHP : service provider, facade, config publishable."
-    icon="🅻"
+    icon="/icons/laravel.svg"
     href="/sdks/laravel"
     badge="soon"
   />
   <Card
     title="Node.js / TypeScript SDK"
     description="TypeScript natif · ESM + CJS · Node 18+ · Bun + Deno compatibles"
-    icon="⬢"
+    icon="/icons/node.svg"
     href="/sdks/node"
     badge="stable"
   />
   <Card
     title="Python SDK"
     description="PyPI · Python 3.9+ · type hints complets · httpx"
-    icon="🐍"
+    icon="/icons/python.svg"
     href="/sdks/python"
     badge="stable"
   />

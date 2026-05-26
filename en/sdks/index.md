@@ -6,28 +6,28 @@ Zayono publishes maintained SDKs for the 4 most-used languages in payment integr
   <Card
     title="PHP SDK"
     description="Composer · PHP 8.1+ · Guzzle 7 · PSR-18"
-    icon="🐘"
+    icon="/icons/php.svg"
     href="/en/sdks/php"
     badge="stable"
   />
   <Card
     title="Laravel SDK"
     description="Opinionated wrapper around the PHP SDK: service provider, facade, publishable config."
-    icon="🅻"
+    icon="/icons/laravel.svg"
     href="/en/sdks/laravel"
     badge="soon"
   />
   <Card
     title="Node.js / TypeScript SDK"
     description="Native TypeScript · ESM + CJS · Node 18+ · Bun + Deno compatible"
-    icon="⬢"
+    icon="/icons/node.svg"
     href="/en/sdks/node"
     badge="stable"
   />
   <Card
     title="Python SDK"
     description="PyPI · Python 3.9+ · full type hints · httpx"
-    icon="🐍"
+    icon="/icons/python.svg"
     href="/en/sdks/python"
     badge="stable"
   />
