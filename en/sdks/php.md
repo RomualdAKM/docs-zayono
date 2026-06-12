@@ -3,7 +3,7 @@
 Official PHP SDK to integrate Zayono in any modern PHP application. Wraps authentication, retries, pagination and webhook signature verification.
 
 - **Package**: [`zayono/zayono-php`](https://packagist.org/packages/zayono/zayono-php) on Packagist
-- **Source**: [github.com/zayono/zayono-php](https://github.com/zayono/zayono-php)
+- **Source**: [github.com/RomualdAKM/zayono-php](https://github.com/RomualdAKM/zayono-php)
 - **License**: MIT
 - **PHP**: 8.1+
 - **HTTP**: Guzzle 7 (PSR-18, swappable)
@@ -160,9 +160,9 @@ All requests / responses / retries are logged at `info` level. Errors at `warnin
 
 ## Full reference
 
-- [Zayono](https://github.com/zayono/zayono-php/blob/main/docs/Zayono.md) — main client
-- [PaymentsService](https://github.com/zayono/zayono-php/blob/main/docs/PaymentsService.md)
-- [PayoutsService](https://github.com/zayono/zayono-php/blob/main/docs/PayoutsService.md)
-- [CustomersService](https://github.com/zayono/zayono-php/blob/main/docs/CustomersService.md)
-- [WebhooksHelper](https://github.com/zayono/zayono-php/blob/main/docs/WebhooksHelper.md)
-- [Exceptions](https://github.com/zayono/zayono-php/blob/main/docs/Exceptions.md)
+- [Zayono](https://github.com/RomualdAKM/zayono-php/blob/main/docs/Zayono.md) — main client
+- [PaymentsResource](https://github.com/RomualdAKM/zayono-php/blob/main/docs/PaymentsResource.md)
+- [PayoutsResource](https://github.com/RomualdAKM/zayono-php/blob/main/docs/PayoutsResource.md)
+- [CustomersResource](https://github.com/RomualdAKM/zayono-php/blob/main/docs/CustomersResource.md)
+- [WebhooksHelper](https://github.com/RomualdAKM/zayono-php/blob/main/docs/WebhooksHelper.md)
+- [Exceptions](https://github.com/RomualdAKM/zayono-php/blob/main/docs/Exceptions.md)

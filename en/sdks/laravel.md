@@ -116,4 +116,4 @@ The Laravel SDK (`zayono/zayono-laravel`) will ship:
 - Artisan commands (`zayono:ping`, `zayono:aggregators`, `zayono:test-payment`)
 - Optional Eloquent models (`ZayonoPayment`, `ZayonoPayout`)
 
-Follow the release on the [Changelog](https://github.com/zayono) or via dashboard announcements at [app.zayono.com](https://app.zayono.com).
+Follow the release on the [Changelog](https://github.com/RomualdAKM/sdks-zayono/releases) or via dashboard announcements at [app.zayono.com](https://app.zayono.com).

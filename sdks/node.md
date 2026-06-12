@@ -3,7 +3,7 @@
 SDK Node.js officiel, TypeScript-first. Marche en ESM + CJS, compatible Bun et Deno.
 
 - **Package** : [`@zayono/sdk`](https://www.npmjs.com/package/@zayono/sdk) sur npm
-- **Source** : [github.com/zayono/zayono-node](https://github.com/zayono/zayono-node)
+- **Source** : [github.com/RomualdAKM/sdks-zayono](https://github.com/RomualdAKM/sdks-zayono/tree/main/zayono-node)
 - **License** : MIT
 - **Node** : 18+
 - **Modules** : ESM + CJS
@@ -181,9 +181,9 @@ Le SDK utilise `fetch` natif quand disponible, sinon `node-fetch` en fallback.
 
 ## Référence complète
 
-- [`Zayono`](https://github.com/zayono/zayono-node/blob/main/docs/Zayono.md) — client principal
-- [`PaymentsResource`](https://github.com/zayono/zayono-node/blob/main/docs/PaymentsResource.md)
-- [`PayoutsResource`](https://github.com/zayono/zayono-node/blob/main/docs/PayoutsResource.md)
-- [`CustomersResource`](https://github.com/zayono/zayono-node/blob/main/docs/CustomersResource.md)
-- [`WebhooksHelper`](https://github.com/zayono/zayono-node/blob/main/docs/WebhooksHelper.md)
-- [Types](https://github.com/zayono/zayono-node/blob/main/src/types.ts)
+- [`Zayono`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-node/docs/Zayono.md) — client principal
+- [`PaymentsResource`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-node/docs/PaymentsResource.md)
+- [`PayoutsResource`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-node/docs/PayoutsResource.md)
+- [`CustomersResource`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-node/docs/CustomersResource.md)
+- [`WebhooksHelper`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-node/docs/WebhooksHelper.md)
+- [Types](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-node/src/types.ts)

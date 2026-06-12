@@ -3,7 +3,7 @@
 SDK Python officiel. Type hints complets, support sync + async (asyncio), compatible Django / Flask / FastAPI.
 
 - **Package** : [`zayono`](https://pypi.org/project/zayono) sur PyPI
-- **Source** : [github.com/zayono/zayono-python](https://github.com/zayono/zayono-python)
+- **Source** : [github.com/RomualdAKM/sdks-zayono](https://github.com/RomualdAKM/sdks-zayono/tree/main/zayono-python)
 - **License** : MIT
 - **Python** : 3.9+
 - **HTTP** : httpx (sync + async)
@@ -238,10 +238,10 @@ def process(p: Payment) -> None:
 
 ## Référence complète
 
-- [`Zayono`](https://github.com/zayono/zayono-python/blob/main/docs/Zayono.md) — client sync
-- [`AsyncZayono`](https://github.com/zayono/zayono-python/blob/main/docs/AsyncZayono.md) — client async
-- [`payments`](https://github.com/zayono/zayono-python/blob/main/docs/payments.md)
-- [`payouts`](https://github.com/zayono/zayono-python/blob/main/docs/payouts.md)
-- [`customers`](https://github.com/zayono/zayono-python/blob/main/docs/customers.md)
-- [`webhooks`](https://github.com/zayono/zayono-python/blob/main/docs/webhooks.md)
-- [Types](https://github.com/zayono/zayono-python/blob/main/src/zayono/types.py)
+- [`Zayono`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/src/zayono/client.py) — client sync
+- [`AsyncZayono`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/src/zayono/async_client.py) — client async
+- [`payments`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/docs/payments.md)
+- [`payouts`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/docs/payouts.md)
+- [`customers`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/docs/customers.md)
+- [`webhooks`](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/docs/webhooks.md)
+- [Types](https://github.com/RomualdAKM/sdks-zayono/blob/main/zayono-python/src/zayono/types.py)

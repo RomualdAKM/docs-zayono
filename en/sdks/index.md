@@ -88,16 +88,16 @@ Each SDK exposes a `verifyWebhook(payload, signature, secret)` helper that valid
 
 | Language | Package manager | Repo |
 |---|---|---|
-| PHP | [`packagist.org/packages/zayono/zayono-php`](https://packagist.org/packages/zayono/zayono-php) | [github.com/zayono/zayono-php](https://github.com/zayono/zayono-php) |
-| Laravel | [`packagist.org/packages/zayono/zayono-laravel`](https://packagist.org/packages/zayono/zayono-laravel) | [github.com/zayono/zayono-laravel](https://github.com/zayono/zayono-laravel) |
-| Node.js | [`npmjs.com/package/@zayono/sdk`](https://www.npmjs.com/package/@zayono/sdk) | [github.com/zayono/zayono-node](https://github.com/zayono/zayono-node) |
-| Python | [`pypi.org/project/zayono`](https://pypi.org/project/zayono) | [github.com/zayono/zayono-python](https://github.com/zayono/zayono-python) |
+| PHP | [`packagist.org/packages/zayono/zayono-php`](https://packagist.org/packages/zayono/zayono-php) | [github.com/RomualdAKM/zayono-php](https://github.com/RomualdAKM/zayono-php) |
+| Laravel | `zayono/zayono-laravel` (not yet published) | [github.com/RomualdAKM/sdks-zayono](https://github.com/RomualdAKM/sdks-zayono) |
+| Node.js | [`npmjs.com/package/@zayono/sdk`](https://www.npmjs.com/package/@zayono/sdk) | [github.com/RomualdAKM/sdks-zayono](https://github.com/RomualdAKM/sdks-zayono/tree/main/zayono-node) |
+| Python | [`pypi.org/project/zayono`](https://pypi.org/project/zayono) | [github.com/RomualdAKM/sdks-zayono](https://github.com/RomualdAKM/sdks-zayono/tree/main/zayono-python) |
 
 ## Versioning
 
 Every SDK follows [SemVer](https://semver.org):
 
-- **Major** (1.x → 2.x): breaking changes documented in the [Changelog](https://github.com/zayono)
+- **Major** (1.x → 2.x): breaking changes documented in the [Changelog](https://github.com/RomualdAKM/sdks-zayono/releases)
 - **Minor** (1.0 → 1.1) : new backward-compatible features
 - **Patch** (1.0.0 → 1.0.1): bugfixes
 
@@ -108,6 +108,6 @@ The Zayono API itself is versioned via the `/api/v1` prefix. A major API version
 | SDK | Current version | Upcoming features |
 |---|---|---|
 | PHP | 1.0.0 | Async via ReactPHP, PSR-14 event support |
-| Laravel | 1.0.0 | Artisan commands, auto-dispatched queue jobs |
+| Laravel | upcoming | Artisan commands, auto-dispatched queue jobs |
 | Node.js | 1.0.0 | Streaming responses, WebSocket subscriptions |
 | Python | 1.0.0 | Async via native `asyncio`, Django middleware |

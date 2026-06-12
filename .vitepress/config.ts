@@ -134,7 +134,7 @@ export default defineConfig({
     sidebar: sidebarFr(),
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/zayono' },
+      { icon: 'github', link: 'https://github.com/RomualdAKM/sdks-zayono' },
     ],
 
     outline: {
@@ -157,7 +157,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/zayono/zayono-docs/edit/main/:path',
+      pattern: 'https://github.com/RomualdAKM/docs-zayono/edit/main/:path',
       text: 'Suggérer une amélioration',
     },
 
@@ -207,7 +207,7 @@ export default defineConfig({
         outline: { level: [2, 3], label: 'On this page' },
         docFooter: { prev: 'Previous page', next: 'Next page' },
         editLink: {
-          pattern: 'https://github.com/zayono/zayono-docs/edit/main/:path',
+          pattern: 'https://github.com/RomualdAKM/docs-zayono/edit/main/:path',
           text: 'Suggest an improvement',
         },
         lastUpdated: {
