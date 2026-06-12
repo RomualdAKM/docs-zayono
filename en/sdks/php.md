@@ -53,7 +53,7 @@ $payment = $zayono->payments->create([
     ],
 ]);
 
-echo $payment->checkout_url;
+echo $payment['checkout_url'];
 // → https://app.zayono.com/checkout/abc123...
 ```
 
@@ -62,7 +62,7 @@ echo $payment->checkout_url;
 ```php
 $payment = $zayono->payments->retrieve('019e5eaf-cb99-7351-a6d5-c219e28534db');
 
-if ($payment->status === 'success') {
+if ($payment['status'] === 'success') {
     // Payment confirmed. Fulfil the order.
 }
 ```
@@ -119,7 +119,7 @@ For **customers**, `GET /v1/customers` is exposed and the SDK paginates automati
 
 ```php
 foreach ($zayono->customers->list(['country' => 'BJ']) as $customer) {
-    echo $customer->id . PHP_EOL;
+    echo $customer['id'] . PHP_EOL;
 }
 ```
 

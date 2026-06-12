@@ -2,8 +2,7 @@
 
 Le plugin WooCommerce officiel Zayono permet d'accepter Mobile Money + cartes via le checkout natif WooCommerce, sans coder.
 
-- **WordPress.org** : [`wordpress.org/plugins/zayono-woocommerce`](https://wordpress.org/plugins/zayono-woocommerce/)
-- **Source** : [github.com/zayono/zayono-woocommerce](https://github.com/zayono/zayono-woocommerce)
+- **Distribution** : archive `zayono-woocommerce.zip` fournie par l'équipe Zayono (la publication sur WordPress.org est prévue, contactez [support@zayono.com](mailto:support@zayono.com) pour obtenir la dernière version)
 - **License** : GPL-2.0
 - **WordPress** : 5.8+
 - **WooCommerce** : 6.0+
@@ -13,16 +12,13 @@ Le plugin WooCommerce officiel Zayono permet d'accepter Mobile Money + cartes vi
 
 ### Depuis l'admin WordPress
 
-1. **Plugins → Ajouter** → rechercher "Zayono"
-2. Cliquez "Installer maintenant" → "Activer"
+1. **Extensions → Ajouter → Téléverser une extension**
+2. Sélectionnez `zayono-woocommerce.zip` → "Installer maintenant" → "Activer"
 
 ### Manuellement
 
 ```bash
-# Téléchargez la dernière release
-wget https://github.com/zayono/zayono-woocommerce/releases/latest/download/zayono-woocommerce.zip
-
-# Décompressez dans le dossier plugins
+# Décompressez l'archive dans le dossier plugins
 unzip zayono-woocommerce.zip -d wp-content/plugins/
 ```
 
@@ -130,5 +126,4 @@ Logs API Zayono : [app.zayono.com → Intégration → Logs API](https://app.zay
 
 ## Support
 
-- Bug ou demande : [GitHub Issues](https://github.com/zayono/zayono-woocommerce/issues)
-- Contact commercial : support@zayono.com
+- Bug, demande ou contact commercial : [support@zayono.com](mailto:support@zayono.com)

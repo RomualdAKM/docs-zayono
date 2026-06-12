@@ -66,7 +66,7 @@ class OrderController extends Controller
             'operator' => 'mtn_bj',
         ]);
 
-        return redirect($payment->checkout_url);
+        return redirect($payment['checkout_url']);
     }
 }
 ```

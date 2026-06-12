@@ -58,7 +58,7 @@ payment = client.payments.create(
     metadata={"order_id": "ORD-12345"},
 )
 
-print(payment.checkout_url)
+print(payment["checkout_url"])
 # → https://app.zayono.com/checkout/abc123...
 ```
 
@@ -67,7 +67,7 @@ print(payment.checkout_url)
 ```python
 payment = client.payments.retrieve("019e5eaf-cb99-7351-a6d5-c219e28534db")
 
-if payment.status == "success":
+if payment["status"] == "success":
     # Le paiement est confirmé. Livrez la commande.
     pass
 ```
@@ -166,7 +166,7 @@ async def main():
             },
             operator="mtn_bj",
         )
-        print(payment.checkout_url)
+        print(payment["checkout_url"])
 
 asyncio.run(main())
 ```
@@ -181,14 +181,14 @@ Pour les **clients**, `GET /v1/customers` est exposé — itérateur sync, pagin
 
 ```python
 for customer in client.customers.list(country="BJ"):
-    print(customer.id)
+    print(customer["id"])
 ```
 
 Version async :
 
 ```python
 async for customer in client.customers.list(country="BJ"):
-    print(customer.id)
+    print(customer["id"])
 ```
 
 ## Gestion des erreurs
@@ -214,15 +214,17 @@ except RateLimitError as e:
 
 ## Type hints
 
-Le SDK ship des stubs `.pyi` complets. mypy + pyright + Pylance détectent les erreurs avant runtime :
+Le SDK est typé inline (`py.typed`). Les ressources retournent des `dict`, et `zayono.types` expose des `TypedDict` pour annoter vos fonctions. mypy + pyright + Pylance détectent les erreurs avant runtime :
 
 ```python
-from zayono.types import Payment, PaymentStatus
+from zayono.types import Payment
 
 def process(p: Payment) -> None:
-    if p.status == PaymentStatus.SUCCESS:
+    if p["status"] == "success":
         ...
 ```
+
+`PaymentStatus` est un `Literal["initiated", "pending", "success", "failed", "cancelled", "refunded"]`, utilisable pour annoter vos propres signatures.
 
 ## Compatibilité
 

@@ -2,8 +2,7 @@
 
 The official Zayono WooCommerce plugin lets you accept Mobile Money + cards through the native WooCommerce checkout, with no coding.
 
-- **WordPress.org**: [`wordpress.org/plugins/zayono-woocommerce`](https://wordpress.org/plugins/zayono-woocommerce/)
-- **Source**: [github.com/zayono/zayono-woocommerce](https://github.com/zayono/zayono-woocommerce)
+- **Distribution**: `zayono-woocommerce.zip` archive provided by the Zayono team (WordPress.org publication is planned, contact [support@zayono.com](mailto:support@zayono.com) for the latest version)
 - **License**: GPL-2.0
 - **WordPress**: 5.8+
 - **WooCommerce**: 6.0+
@@ -13,16 +12,13 @@ The official Zayono WooCommerce plugin lets you accept Mobile Money + cards thro
 
 ### From the WordPress admin
 
-1. **Plugins → Add** → search for "Zayono"
-2. Click "Install now" → "Activate"
+1. **Plugins → Add New → Upload Plugin**
+2. Select `zayono-woocommerce.zip` → "Install now" → "Activate"
 
 ### Manually
 
 ```bash
-# Download the latest release
-wget https://github.com/zayono/zayono-woocommerce/releases/latest/download/zayono-woocommerce.zip
-
-# Unzip into the plugins folder
+# Unzip the archive into the plugins folder
 unzip zayono-woocommerce.zip -d wp-content/plugins/
 ```
 
@@ -130,5 +126,4 @@ Zayono API logs: [app.zayono.com → Developers → API logs](https://app.zayono
 
 ## Support
 
-- Bug or request: [GitHub Issues](https://github.com/zayono/zayono-woocommerce/issues)
-- Sales contact: support@zayono.com
+- Bug, request, or sales contact: [support@zayono.com](mailto:support@zayono.com)
