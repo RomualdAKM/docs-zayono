@@ -20,7 +20,7 @@ Creates a new payment transaction. If an `operator` is specified, the payment is
 ## Parameters
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Payment amount (minimum: 1, maximum: 10,000,000)' },
+  { name: 'amount', type: 'number', required: true, description: 'Payment amount in the currency major unit, not in cents (e.g. 5000 = 5000 XOF; 50.99 = 50.99 USD). Minimum: 1, maximum: 10,000,000.' },
   { name: 'currency', type: 'string', required: true, description: 'ISO 4217 currency code (e.g. XOF, XAF, GHS)' },
   { name: 'description', type: 'string', required: true, description: 'Payment description (max 255 characters)' },
   { name: 'return_url', type: 'string', required: true, description: 'Redirect URL after payment (max 500 characters)' },

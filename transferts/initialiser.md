@@ -20,7 +20,7 @@ Cree un nouveau transfert vers un beneficiaire. L'operateur est **obligatoire** 
 ## Parametres
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Montant du transfert (minimum : 1, maximum : 10 000 000)' },
+  { name: 'amount', type: 'number', required: true, description: 'Montant du transfert en unite principale de la devise, pas en centimes (ex: 5000 = 5000 XOF ; 50.99 = 50.99 USD). Minimum : 1, maximum : 10 000 000.' },
   { name: 'currency', type: 'string', required: true, description: 'Code devise ISO 4217 (ex: XOF, XAF, GHS)' },
   { name: 'operator', type: 'string', required: true, description: 'Code operateur mobile money (ex: mtn_bj, orange_ci)' },
   { name: 'recipient', type: 'object', required: true, description: 'Informations du beneficiaire' },

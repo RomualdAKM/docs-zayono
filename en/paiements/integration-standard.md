@@ -34,7 +34,7 @@ Creates a checkout session and returns a URL to redirect your customer to.
 ### Parameters
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Payment amount (minimum: 1, maximum: 10,000,000)' },
+  { name: 'amount', type: 'number', required: true, description: 'Payment amount in the currency major unit, not in cents (e.g. 5000 = 5000 XOF; 50.99 = 50.99 USD). Minimum: 1, maximum: 10,000,000.' },
   { name: 'currency', type: 'string', required: true, description: 'ISO 4217 currency code (e.g. XOF, XAF, GHS, KES)' },
   { name: 'return_url', type: 'string', required: true, description: 'Redirect URL after successful payment (max 500)' },
   { name: 'cancel_url', type: 'string', required: false, description: 'Redirect URL on cancellation (max 500)' },

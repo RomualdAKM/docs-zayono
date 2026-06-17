@@ -67,7 +67,7 @@ Toutes les reponses de l'API Zayono suivent un **format JSON uniforme**.
 
 ## Conventions
 
-- Tous les **montants** sont des nombres decimaux (ex: `1000.00`)
+- Tous les **montants** sont exprimes dans l'unite principale de la devise (PAS en centimes) : `5000` avec `XOF` = 5000 FCFA, `50.99` avec `USD` = 50.99 USD. Nombres decimaux a 2 decimales maximum (un entier pour les devises sans decimale comme XOF, XAF, GNF ; jusqu'a 2 decimales pour USD, EUR, GHS, KES). Zayono convertit en interne vers le format attendu par chaque agregateur (centimes pour Stripe, etc.), vous envoyez toujours le montant principal.
 - Toutes les **dates** sont au format **ISO 8601** (ex: `2025-05-15T10:30:00+00:00`)
 - Tous les **identifiants** sont des **UUID v4**
 - Les **devises** utilisent le format **ISO 4217** a 3 lettres (ex: `XOF`, `XAF`)

@@ -34,7 +34,7 @@ Cree une session de checkout et retourne une URL vers laquelle rediriger votre c
 ### Parametres
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Montant du paiement (minimum : 1, maximum : 10 000 000)' },
+  { name: 'amount', type: 'number', required: true, description: 'Montant du paiement en unite principale de la devise, pas en centimes (ex: 5000 = 5000 XOF ; 50.99 = 50.99 USD). Minimum : 1, maximum : 10 000 000.' },
   { name: 'currency', type: 'string', required: true, description: 'Code devise ISO 4217 (ex: XOF, XAF, GHS, KES)' },
   { name: 'return_url', type: 'string', required: true, description: 'URL de redirection apres paiement reussi (max 500)' },
   { name: 'cancel_url', type: 'string', required: false, description: 'URL de redirection en cas d annulation (max 500)' },

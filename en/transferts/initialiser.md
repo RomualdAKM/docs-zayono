@@ -20,7 +20,7 @@ Creates a new payout to a recipient. The operator is **required** and the payout
 ## Parameters
 
 <ParamTable :params="[
-  { name: 'amount', type: 'number', required: true, description: 'Payout amount (minimum: 1, maximum: 10,000,000)' },
+  { name: 'amount', type: 'number', required: true, description: 'Payout amount in the currency major unit, not in cents (e.g. 5000 = 5000 XOF; 50.99 = 50.99 USD). Minimum: 1, maximum: 10,000,000.' },
   { name: 'currency', type: 'string', required: true, description: 'ISO 4217 currency code (e.g. XOF, XAF, GHS)' },
   { name: 'operator', type: 'string', required: true, description: 'Mobile money operator code (e.g. mtn_bj, orange_ci)' },
   { name: 'recipient', type: 'object', required: true, description: 'Recipient information' },
