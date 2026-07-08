@@ -146,7 +146,7 @@ Nigeria-specific methods exposed via Paystack.
 
 ## Crypto
 
-The customer pays in crypto, you price and settle in a **fiat reference currency** (XOF, XAF, NGN, GHS, USD or EUR). The customer picks the crypto on the hosted page (BTC, BCH, ETH, LTC, USDC).
+The customer pays in crypto, you price and settle in a **fiat reference currency** (XOF, XAF, NGN, GHS, USD or EUR). The customer picks the crypto on the hosted page.
 
 | Method | Code | Reference currency | Country |
 |---|---|---|---|
@@ -159,7 +159,7 @@ The customer pays in crypto, you price and settle in a **fiat reference currency
 | Multi-asset crypto (Cryptomus) | `crypto_global` | * | International |
 
 ::: tip `crypto_global` vs `crypto_*`
-- `crypto_*` (with a currency) → routed via Coinbase Commerce, priced in the local currency, live-converted to crypto on the payment page.
+- `crypto_*` (with a currency) → routed via Coinbase Commerce or NOWPayments, priced in the local currency, live-converted to crypto on the payment page. NOWPayments covers 300+ cryptos (BTC, ETH, USDT on all chains, SOL, TON…) on `crypto_usd`, `crypto_eur` and `crypto_ngn`.
 - `crypto_global` → routed via Cryptomus, the merchant passes the target crypto and amount directly.
 :::
 

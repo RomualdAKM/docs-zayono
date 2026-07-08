@@ -146,7 +146,7 @@ Méthodes spécifiques au marché nigérian, exposées par Paystack.
 
 ## Crypto
 
-Le client paie en crypto, vous facturez et êtes réglé dans une **devise de référence fiat** (XOF, XAF, NGN, GHS, USD ou EUR). Le client choisit la crypto sur la page hébergée (BTC, BCH, ETH, LTC, USDC).
+Le client paie en crypto, vous facturez et êtes réglé dans une **devise de référence fiat** (XOF, XAF, NGN, GHS, USD ou EUR). Le client choisit la crypto sur la page hébergée.
 
 | Méthode | Code | Devise de référence | Pays |
 |---|---|---|---|
@@ -159,7 +159,7 @@ Le client paie en crypto, vous facturez et êtes réglé dans une **devise de r�
 | Crypto multi-actifs (Cryptomus) | `crypto_global` | * | International |
 
 ::: tip `crypto_global` vs `crypto_*`
-- `crypto_*` (avec devise) → routage via Coinbase Commerce, prix affiché dans la devise locale, conversion live en crypto sur la page de paiement.
+- `crypto_*` (avec devise) → routage via Coinbase Commerce ou NOWPayments, prix affiché dans la devise locale, conversion live en crypto sur la page de paiement. NOWPayments couvre 300+ cryptos (BTC, ETH, USDT toutes chaînes, SOL, TON…) sur `crypto_usd`, `crypto_eur` et `crypto_ngn`.
 - `crypto_global` → routage via Cryptomus, le marchand transmet directement la crypto et le montant attendus.
 :::
 
